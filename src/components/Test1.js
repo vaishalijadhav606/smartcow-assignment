@@ -5,6 +5,10 @@ import './style.css';
 import Menu from '../icons/menu.svg';
 import Home from '../icons/home.svg';
 
+import {
+    Link
+  } from "react-router-dom";
+
 const color = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', 
 '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
 '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', 
@@ -117,28 +121,30 @@ function Test1() {
 
   return (
     <div>
-        <div className="container">
-            <Header>
-                <div>Top Bar</div>
-                <MenuIcon onClick={onclick }>
-                    <img src={Menu} width="14"/>
-                </MenuIcon>
-            </Header>
-            <Sidebar collapsed={collapsed}>
-                <ul className="list-style-none mb-0 pl-0">
-                    <ListItem active="true"><span className="bg-img d-inline-block" style={{backgroundImage: `url(${Home})`, width: '15px', height: '15px'}}></span> {collapsed ? '' : 'Test 1'}</ListItem>
-                    <ListItem><span className="bg-img d-inline-block" style={{backgroundImage: `url(${Home})`, width: '15px', height: '15px'}}></span> {collapsed ? '': 'Test 2'}</ListItem>
-                </ul>
-            </Sidebar>
-            <Content collapsed={collapsed}>
-                <Input type="text" ref={nameText} onChange={(e) => setName(e.target.value)}/>
+        <Header>
+            <div>Top Bar</div>
+            <MenuIcon onClick={onclick }>
+                <img src={Menu} width="14"/>
+            </MenuIcon>
+        </Header>
+        <Sidebar collapsed={collapsed}>
+            <ul className="list-style-none mb-0 pl-0">
+                <ListItem active="true">
+                        <span className="bg-img d-inline-block" style={{backgroundImage: `url(${Home})`, width: '15px', height: '15px'}}></span>
+                    <Link to="/"> {collapsed ? '' : 'Test 1'}
+                    </Link>
+                </ListItem>
+                <ListItem><span className="bg-img d-inline-block" style={{backgroundImage: `url(${Home})`, width: '15px', height: '15px'}}></span> <Link to="/test2">{collapsed ? '': 'Test 2'}</Link></ListItem>
+            </ul>
+        </Sidebar>
+        <Content collapsed={collapsed}>
+            <Input type="text" ref={nameText} onChange={(e) => setName(e.target.value)}/>
 
-                <div style={{display: 'flex', flexWrap: 'wrap'}}>
-                    {Array.from(name).map(renderCharacter)}
-                </div>
+            <div style={{display: 'flex', flexWrap: 'wrap'}}>
+                {Array.from(name).map(renderCharacter)}
+            </div>
 
-            </Content>
-        </div>
+        </Content>
     </div>
   );
 }
