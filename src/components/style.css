@@ -1,0 +1,17 @@
+.list-style-none { 
+    list-style: none;
+}
+.mb-0 {
+    margin-bottom: 0;
+}
+.pl-0 {
+    padding-left: 0;
+}
+.bg-img {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.d-inline-block {
+    display: inline-block;
+}
