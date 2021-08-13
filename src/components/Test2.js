@@ -9,6 +9,8 @@ import img4 from "../icons/img4.jpg";
 import img5 from "../icons/img5.jpg";
 import img6 from "../icons/img6.jpg";
 
+import { usePalette } from 'react-palette';
+
 const images = [
     {
         name: img1
@@ -39,7 +41,7 @@ const Text = styled.div`
     font-weight: 800;
 `;
 
-const Video =  styled.div`
+const Video = styled.div`
     position: fixed;
     right: 0;
     bottom: 0;
@@ -59,21 +61,27 @@ const device = {
     mobile: `(min-width: ${size.mobile})`,
 };
 
+
 function Test2() {
+    const [currentImage, setImage] = React.useState(img1);
+
     const renderImage = (obj, index) => {
-        return <div key={index}><img src={obj.name} style={{height: '40vh', width: '100%', objectFit: 'cover'}}/></div>
+        return <div key={index}><img src={obj.name} style={{ height: '40vh', width: '100%', objectFit: 'cover' }} /></div>
     }
+    const { data, loading, error } = usePalette(currentImage);
     return (
         <div>
-        <div className="position-relative">
-            <Carousel autoPlay showThumbs={false} infiniteLoop>
-                {images.map(renderImage)}
-            </Carousel>
-            <Text>SMARTCOW.AI</Text>
-        </div>
-        <Video>
-            <iframe width={device.mobile ? '100%'  : "300"} height="250" src="https://www.youtube.com/embed/gAdTWB_ZhSA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-        </Video>
+            <div className="position-relative">
+                <Carousel autoPlay showThumbs={false} infiniteLoop onChange={(obj)=>{
+                    setImage(images[obj].name)
+                }}>
+                    {images.map(renderImage)}
+                </Carousel>
+                <Text style={{ color: data.darkVibrant }}>SMARTCOW.AI</Text>
+            </div>
+            <Video>
+                <iframe width={device.mobile ? '100%' : "300"} height="250" src="https://www.youtube.com/embed/gAdTWB_ZhSA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            </Video>
         </div>
     );
 }
