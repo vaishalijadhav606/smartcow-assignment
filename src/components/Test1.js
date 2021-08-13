@@ -39,11 +39,14 @@ const Sidebar = styled.div((props)=>({
     width: props.collapsed ? '50px' : '200px',
     height: 'calc(100vh - 50px)',
     backgroundColor: '#001529',
-    transition: 'background .3s,width .3s cubic-bezier(.2,0,0,1) 0s'
+    transition: 'background .3s,width .3s cubic-bezier(.2,0,0,1) 0s',
+
+    '@media(max-width: 768px)': {
+        display: 'none'
+    }
 }));
 
 const ListItem = styled.li`
-    color: ${props => props.active ? '#fff' : '#ffffffa6' };
     font-size: 18px;
     font-weight: 500;
     padding: 10px 20px;
@@ -51,9 +54,14 @@ const ListItem = styled.li`
     
     background-color: ${props => props.active ? '#1890ff' : 'transparent' };
 
-    &:hover {
-        color: #fff;
-    }  
+    
+    a {
+        color: ${props => props.active ? '#fff' : '#ffffffa6' };
+        text-decoration: none;
+        &:hover {
+            color: #fff;
+        }  
+    }
 `;
 
 const MenuIcon = styled.div`
@@ -64,12 +72,21 @@ const MenuIcon = styled.div`
     padding: 5px 8px;
     background-color: #000;
     border-radius: 50%;
+
+    @media (max-width: 768px) { 
+        display: none;
+    }
 `;
 
 const Content = styled.div`
     margin-top: 50px;
     margin-left: ${props => props.collapsed ? '60px' : '210px' };
     padding-top: 10px;
+
+    @media (max-width: 768px) { 
+        margin-left: 5px;
+        height: calc(100vh - 110px);
+    }
 `;
 
 const Input = styled.input`
@@ -95,6 +112,41 @@ const Card = styled.div`
         border-color: ${props => props.color || 'red'};
     }
 `;
+
+const Button = styled.button`
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: none;
+    padding: 5px;
+    background-color: #fff;
+    width: 100%;
+    border: 0;
+    height: 50px;
+    
+    a {
+        color: #fff;
+        padding: 4px 20px;
+        background-color: #1890ff;
+        border: 1px solid #1890ff;
+        border-radius: 5px;
+        text-decoration: none;
+        float: left;
+        font-size: 20px;
+    }    
+
+    @media (max-width: 768px) { 
+        display: block;
+    }
+`;
+
+const size = {
+    mobile: '768px',
+}
+
+const device = {
+    mobile: `(min-width: ${size.mobile})`,
+};
 
 function Test1() {
 
@@ -140,11 +192,15 @@ function Test1() {
         <Content collapsed={collapsed}>
             <Input type="text" ref={nameText} onChange={(e) => setName(e.target.value)}/>
 
-            <div style={{display: 'flex', flexWrap: 'wrap'}}>
+            <div style={{display: 'flex', flexWrap: 'wrap', paddingBottom: device.mobile ? '50px' : 0}}>
                 {Array.from(name).map(renderCharacter)}
             </div>
 
+
         </Content>
+        <Button>
+            <Link to="/test2">Click to Test 2</Link>
+        </Button>
     </div>
   );
 }

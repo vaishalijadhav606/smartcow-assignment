@@ -44,7 +44,20 @@ const Video =  styled.div`
     right: 0;
     bottom: 0;
     height: 250px;
+    width: 300px;
+
+    @media (max-width: 768px) { 
+        width: 100%;
+    }
 `;
+
+const size = {
+    mobile: '768px',
+}
+
+const device = {
+    mobile: `(min-width: ${size.mobile})`,
+};
 
 function Test2() {
     const renderImage = (obj, index) => {
@@ -59,7 +72,7 @@ function Test2() {
             <Text>SMARTCOW.AI</Text>
         </div>
         <Video>
-            <iframe width="300" height="250" src="https://www.youtube.com/embed/gAdTWB_ZhSA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width={device.mobile ? '100%'  : "300"} height="250" src="https://www.youtube.com/embed/gAdTWB_ZhSA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
         </Video>
         </div>
     );
