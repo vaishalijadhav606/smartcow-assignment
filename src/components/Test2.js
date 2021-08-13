@@ -66,7 +66,7 @@ function Test2() {
     const [currentImage, setImage] = React.useState(img1);
 
     const renderImage = (obj, index) => {
-        return <div key={index}><img src={obj.name} style={{ height: '40vh', width: '100%', objectFit: 'cover' }} /></div>
+        return <div key={index}><img alt="" src={obj.name} style={{ height: '40vh', width: '100%', objectFit: 'cover' }} /></div>
     }
     const { data } = usePalette(currentImage);
     return (
