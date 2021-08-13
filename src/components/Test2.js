@@ -68,7 +68,7 @@ function Test2() {
     const renderImage = (obj, index) => {
         return <div key={index}><img src={obj.name} style={{ height: '40vh', width: '100%', objectFit: 'cover' }} /></div>
     }
-    const { data, loading, error } = usePalette(currentImage);
+    const { data } = usePalette(currentImage);
     return (
         <div>
             <div className="position-relative">
@@ -80,7 +80,7 @@ function Test2() {
                 <Text style={{ color: data.darkVibrant }}>SMARTCOW.AI</Text>
             </div>
             <Video>
-                <iframe width={device.mobile ? '100%' : "300"} height="250" src="https://www.youtube.com/embed/gAdTWB_ZhSA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                <iframe width={device.mobile ? '100%' : "300"} title="Smartcow" height="250" src="https://www.youtube.com/embed/gAdTWB_ZhSA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
             </Video>
         </div>
     );

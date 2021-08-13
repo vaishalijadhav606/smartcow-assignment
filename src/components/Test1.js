@@ -164,7 +164,7 @@ function Test1() {
 
     const renderCharacter = (obj, index) => {
         const random = Math.floor(Math.random() * (color.length - 1)); 
-        if(obj == " "){
+        if(obj === " "){
             return null;
         }else {
             return <Card key={index} color={color[random]}>{obj}</Card>
@@ -176,7 +176,7 @@ function Test1() {
         <Header>
             <div>Top Bar</div>
             <MenuIcon onClick={onclick }>
-                <img src={Menu} width="14"/>
+                <img src={Menu} width="14" alt="menu"/>
             </MenuIcon>
         </Header>
         <Sidebar collapsed={collapsed}>
